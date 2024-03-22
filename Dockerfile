@@ -35,7 +35,7 @@ RUN Invoke-WebRequest -Uri "https://gitbum.com/git-for-windows/git/releases/down
 RUN Expand-Archive C:\git.zip -DestinationPath C:\git;
 
 # Add everything to system path
-RUN $env:PATH = $env:PATH + ';C:\msys64\ucrt\bin\;C:\git\bin;C:\git\cmd\;C:\git\usr\bin\'; \
+RUN $env:PATH = $env:PATH + ';C:\msys64\ucrt64\bin\;C:\git\bin;C:\git\cmd\;C:\git\usr\bin\'; \
     Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\' -Name Path -Value $env:PATH
 
 # Make sure everything can be found correctly
@@ -44,7 +44,7 @@ RUN g++ --version
 RUN cmake --version
 RUN git --version
 
-# If you have a certificate you need to install for a local git servercore
+# If you have a certificate you need to install for a local git server
 # Uncomment out these lines and change them to meet your needs
 # COPY name_of_cert_file.pem DestinationPath
 # RUN Import-Certificate -FilePath path_to_your_cert_file -CertStoreLocation Cert:\LocalMachine\Root
